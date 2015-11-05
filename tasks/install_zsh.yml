@@ -1,0 +1,14 @@
+---
+- name: Install zsh(OSX)
+  command: /bin/bash -lc "brew install {{ item.package }} {{ item.option }}"
+  with_items:
+    - { package: "zsh", option: "--disable-etcdir" }
+    - { package: "zsh-completions", option: "" }
+  when: ansible_os_family == 'Darwin'
+
+- name: Install zsh(RedHat)
+  yum: name="{{ item }}" state=latest
+  with_items:
+    - "zsh"
+    - "zsh-completions"
+  when: ansible_os_family == 'RedHat'
