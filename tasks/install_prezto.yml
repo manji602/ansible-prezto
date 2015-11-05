@@ -1,11 +1,13 @@
 ---
 - name: Install prezto
-  git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
+  git:
+    repo: https://github.com/sorin-ionescu/prezto.git
+    dest: "{{ home }}/.zprezto"
 
 - name: Add symbolic link dotfiles
   file: 
-    src: "~/.zprezto/runcoms/{{ item }}"
-    dest: "~/.{{ item }}"
+    src: "{{ home }}/.zprezto/runcoms/{{ item }}"
+    dest: "{{ home }}/.{{ item }}"
     state: "link"
   with_items:
     - zlogin
@@ -28,3 +30,10 @@
   file:
     path: "{{ home }}/.zsh.d"
     state: directory
+
+- name: Switch to zsh(without OSX)
+  user:
+    name: "{{ user }}"
+    shell: /usr/bin/zsh
+  sudo: yes
+  when: ansible_os_family != 'Darwin'

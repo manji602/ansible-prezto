@@ -12,6 +12,7 @@ Ansible playbook for install zsh and prezto.
 - hosts: xxx
   vars:
     user: yyy
+    home: zzz
   roles:
     - { role: prezto-playbook }
     ...
