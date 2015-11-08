@@ -1,6 +1,6 @@
 # load zsh flagment
-if [ -f "${HOME}/.zsh.d" ]; then
+if [ -d "${HOME}/.zsh.d" ]; then
    for f in "${HOME}"/.zsh.d/* ; do
-       source *
+       source $f
    done
 fi

@@ -20,16 +20,22 @@
   template:
     src: .zshrc.j2
     dest: "{{ home }}/.zshrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Set .zshrc.custom
   template:
     src: .zshrc.custom.j2
     dest: "{{ home }}/.zshrc.custom"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Make directory .zsh.d
   file:
     path: "{{ home }}/.zsh.d"
     state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Switch to zsh(without OSX)
   user:
